@@ -43,7 +43,7 @@ const MainLayout: React.FC = () => {
                 Global Ranking
               </Link>
               <Link
-                to="/vendor-ranking/1"
+                to="/vendor-ranking"
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                   isActive("/vendor-ranking")
                     ? "bg-gray-400"
