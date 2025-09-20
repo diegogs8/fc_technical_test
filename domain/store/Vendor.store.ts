@@ -32,4 +32,7 @@ export const selectVendorsByTechnology = (state: { vendors: VendorsState }, tech
         vendor.antennas.some(antenna => antenna.technology === tech)
     );
 
+export const selectVendorsByAvgSpeed = (state: { vendors: VendorsState }) =>
+    [...state.vendors.vendors].sort((a, b) => b.avgSpeed - a.avgSpeed);
+
 export default vendorsStore.reducer;

@@ -1,4 +1,9 @@
-PROMT: Creame un prd.md para completar la siguiente tarea.
+Herramienta/Modelo: Cursor - GPT5
+
+Objetivo: Creación de un header responsive, con icono y elementos de navegación.
+
+Prompt exacto:
+Creame un prd.md para completar la siguiente tarea.
 
 Tengo que implementar el header de la aplicación. Este header servirá para la navegación de la aplicación, mostrando las tres pestañas correspondientes a las páginas que se podrá navegar:
  Globlal Ranking, Vendor Ranking y Vendor Detail. Visualmente quiero que el header sea sencillo y legible, que ocupe todo el ancho de la pantalla. Aplica los estilos de tailwind necesarios para lograr esto. A la izquierda debe tener un logo (ft_logo.png) y a la derecha se deben mostrar los elementos de navegación. Es muy importante que sea responsive.
@@ -6,6 +11,7 @@ Tengo que implementar el header de la aplicación. Este header servirá para la 
 Crea un prd de forma detallada en ingles para completar esta tarea en la carpeta ai_evidence. No modifiques ni crees ningun otro archivo, solo el prd.md
 @MainLayout.tsx @App.tsx
 
+Resultado:
 
 # Product Requirements Document (PRD)
 ## Header Navigation Component Implementation

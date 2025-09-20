@@ -5,5 +5,6 @@ export interface Vendor {
     picture: string,
     foundationDate: number
     vendor: string,
-    antennas: Antenna[]
+    antennas: Antenna[],
+    avgSpeed: number
 }
