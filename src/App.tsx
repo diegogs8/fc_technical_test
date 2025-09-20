@@ -11,7 +11,7 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<GlobalRanking />} />
-                    <Route path="vendor-ranking/:vendorId" element={<VendorRanking />} />
+                    <Route path="vendor-ranking" element={<VendorRanking />} />
                     <Route path="vendor/:vendorId" element={<VendorDetail />} />
                 </Route>
             </Routes>
