@@ -1,29 +1,10 @@
 import { store } from "../store/store";
 import { Vendor } from "../model/Vendor.model";
-import { Antenna, TechnologyType } from "../model/Antenna.model";
-import { selectVendorById, selectVendors, selectVendorsByTechnology, selectVendorsByAvgSpeed, setVendors } from "../store/Vendor.store";
+import { TechnologyType } from "../model/Antenna.model";
+import { selectVendorById, selectVendors, selectVendorsByTechnology, selectVendorsByTechnologyOrderedBySpeed, selectVendorSpeedForTechnology, setVendors } from "../store/Vendor.store";
 import vendorsData from "../../src/assets/vendors_data.json";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-const calculateAverageSpeed = (antennas: Antenna[]): number => {
-    if (antennas.length === 0) return 0;
-    
-    const totalSpeed = antennas.reduce((sum, antenna) => {
-        const speedMatch = antenna.speedMbps.match(/(\d+)/);
-        const speed = speedMatch ? parseInt(speedMatch[1]) : 0;
-        return sum + speed;
-    }, 0);
-    
-    return Math.round(totalSpeed / antennas.length);
-};
-
-const processVendorData = (rawVendors: any[]): Vendor[] => {
-    return rawVendors.map(vendor => ({
-        ...vendor,
-        avgSpeed: calculateAverageSpeed(vendor.antennas)
-    }));
-};
 
 export const useVendorApi = () => {
     const dispatch = useDispatch();
@@ -37,10 +18,9 @@ export const useVendorApi = () => {
     };
 
     const fetchVendors = async (): Promise<void> => {
-        const vendorsData = await fetchVendorsFromApi();
-        const processedVendors = processVendorData(vendorsData)
+        const vendors = await fetchVendorsFromApi();
 
-        dispatch(setVendors(processedVendors));
+        dispatch(setVendors(vendors));
     };
 
     const getAllVendors = useCallback((): Vendor[] => vendors, [vendors]);
@@ -53,8 +33,12 @@ export const useVendorApi = () => {
         return selectVendorsByTechnology(store.getState(), tech);
     }, []);
 
-    const getVendorsByAvgSpeed = useCallback((): Vendor[] => {
-        return selectVendorsByAvgSpeed(store.getState());
+    const getVendorsByTechnologyOrderedBySpeed = useCallback((tech: TechnologyType): Vendor[] => {
+        return selectVendorsByTechnologyOrderedBySpeed(store.getState(), tech);
+    }, []);
+
+    const getVendorSpeedForTechnology = useCallback((vendorId: string, tech: TechnologyType): number => {
+        return selectVendorSpeedForTechnology(store.getState(), vendorId, tech);
     }, []);
 
     return {
@@ -63,6 +47,7 @@ export const useVendorApi = () => {
         getAllVendors,
         getVendorById,
         getVendorsByTechnology,
-        getVendorsByAvgSpeed,
+        getVendorsByTechnologyOrderedBySpeed,
+        getVendorSpeedForTechnology,
     };
 };

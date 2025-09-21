@@ -34,20 +34,20 @@ const MainLayout: React.FC = () => {
             <nav className="hidden md:flex space-x-8">
               <Link
                 to="/"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-2 ${
                   isActive("/")
-                    ? "bg-gray-400"
-                    : "hover:!text-pink-600"
+                    ? "border-gray-500 !text-pink-600"
+                    : "border-transparent hover:!border-gray-300 hover:!text-pink-600"
                 }`}
               >
                 Global Ranking
               </Link>
               <Link
                 to="/vendor-ranking"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-2 ${
                   isActive("/vendor-ranking")
-                    ? "bg-gray-400"
-                    : "hover:!text-pink-600"
+                    ? "border-gray-500 !text-pink-600"
+                    : "border-transparent hover:!border-gray-300 hover:!text-pink-600"
                 }`}
               >
                 Vendor Ranking

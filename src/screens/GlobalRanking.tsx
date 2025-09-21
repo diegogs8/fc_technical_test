@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useVendorApi } from "../../domain/api/Vendor.api";
 import GlobalRankingRow from "../components/GlobalRankingRow";
-import { useSelector } from "react-redux";
-import { selectVendorsByAvgSpeed } from "../../domain/store/Vendor.store";
 import LoaderRow from "../components/LoaderRow";
+import TechnologyTabs from "../components/TechnologyTabs";
+import { TechnologyType } from "../../domain/model/Antenna.model";
 
 const GlobalRanking: React.FC = () => {
-    const { vendors, fetchVendors } = useVendorApi();
-    const sortedVendors = useSelector(selectVendorsByAvgSpeed);
-    const [isLoading, setIsLoading] = useState<boolean>(vendors.length > 0)
+    const { vendors, fetchVendors, getVendorsByTechnologyOrderedBySpeed, getVendorSpeedForTechnology } = useVendorApi();
+    const [isLoading, setIsLoading] = useState<boolean>(vendors.length > 0);
+    const [activeTab, setActiveTab] = useState<TechnologyType>(TechnologyType.G2);
 
     useEffect(() => {
         const fetchVendorsData = async () => {
@@ -22,11 +22,18 @@ const GlobalRanking: React.FC = () => {
         fetchVendorsData();
     }, []);
 
+    const filteredVendors = getVendorsByTechnologyOrderedBySpeed(activeTab);
+
   return (
       <div className="px-4 py-8 ">
           <h1 className="text-3xl md:text-4xl font-bold mb-8">
               Vendors Global Ranking
           </h1>
+          
+          <TechnologyTabs 
+              activeTab={activeTab} 
+              onTabChange={setActiveTab} 
+          />
           
           <div className="overflow-x-auto shadow-lg rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
@@ -47,11 +54,12 @@ const GlobalRanking: React.FC = () => {
                       {isLoading ? (
                           <LoaderRow text="Loading vendors..."/>
                       ) : (
-                          sortedVendors.map((vendor, index) => (
+                          filteredVendors.map((vendor, index) => (
                               <GlobalRankingRow
                                   key={vendor.id}
-                                  vendor={vendor }
+                                  vendor={vendor}
                                   position={index + 1}
+                                  speed={getVendorSpeedForTechnology(vendor.id, activeTab)}
                               />
                           ))
                       )}

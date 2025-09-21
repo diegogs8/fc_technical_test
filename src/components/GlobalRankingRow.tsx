@@ -3,13 +3,15 @@ import { Link } from 'react-router';
 import { Vendor } from '../../domain/model/Vendor.model';
 
 interface GlobalRankingRowProps {
-  vendor: Vendor
+  vendor: Vendor;
   position: number;
+  speed: number;
 }
 
 const GlobalRankingRow: React.FC<GlobalRankingRowProps> = ({
   vendor,
   position,
+  speed,
 }) => {
   return (
     <tr className="bg-white hover:bg-gray-50 transition-colors duration-200">
@@ -25,7 +27,7 @@ const GlobalRankingRow: React.FC<GlobalRankingRowProps> = ({
         </Link>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-        {vendor.avgSpeed} Mbps
+        {speed.toFixed(2)} Mbps
       </td>
     </tr>
   );

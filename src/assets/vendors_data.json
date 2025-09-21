@@ -250,5 +250,33 @@
         "speedMbps": "985 Mbps"
       }
     ]
+  },
+  {
+    "id": "34d8d0ef-143a-4222-95c6-c222cb11d4c9",
+    "picture": "https://picsum.photos/64/64",
+    "foundationDate": 599610000000,
+    "vendor": "test",
+    "antennas": [
+      {
+        "technology": "2G",
+        "speedMbps": "90 Mbps"
+      },
+      {
+        "technology": "3G",
+        "speedMbps": "187 Mbps"
+      },
+      {
+        "technology": "4G",
+        "speedMbps": "375 Mbps"
+      },
+      {
+        "technology": "LTE",
+        "speedMbps": "497 Mbps"
+      },
+      {
+        "technology": "5G",
+        "speedMbps": "885 Mbps"
+      }
+    ]
   }
 ]

@@ -6,5 +6,4 @@ export interface Vendor {
     foundationDate: number
     vendor: string,
     antennas: Antenna[],
-    avgSpeed: number
 }
