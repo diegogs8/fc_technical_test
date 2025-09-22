@@ -1,3 +1,20 @@
+Herramienta/Modelo: Cursor - GPT5
+
+Objetivo: Creación de la vista de detalle de vendor.
+
+Prompt exacto:
+Creame un prd_vendor_detail.md para completar la siguiente tarea.
+
+Se ha de implementar la maquetación de la vista de detalle de un vendor en @VendorDetail.tsx . La información que se debe mostrar en la pantalla es la siguiente: su logo, nombre, su fecha de fundación y un listado de sus antenas, indicando la tecnología y su velocidad. El Id del vendor se debe recuperar de la ruta y posteriormente recuperar el vendor con este id usando la api. 
+La tabla de antenas se debe extraer a un componenente aparte, y los elementos de esta también (al igual que @GlobalRankingRow.tsx )
+Los estilos de deben añadir utilizando solo clases de tailwind y se deben seguir colores y estilos acordes a los ya implementados en @GlobalRanking.tsx y @MainLayout.tsx 
+
+Crea un prd de forma detallada en ingles para completar esta tarea en la carpeta ai_evidence. No modifiques ni crees ningun otro archivo, solo el prd_vendor_detail.md
+
+@Antenna.model.ts @Vendor.model.ts @Vendor.api.ts 
+
+RESULT:
+
 # Product Requirements Document: Vendor Detail View
 
 ## Overview

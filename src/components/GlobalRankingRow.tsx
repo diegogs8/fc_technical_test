@@ -16,7 +16,7 @@ const GlobalRankingRow: React.FC<GlobalRankingRowProps> = ({
   return (
     <tr className="bg-white hover:bg-gray-50 transition-colors duration-200">
       <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-lg font-bold text-gray-900">
-        {position}
+        #{position}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
         <Link 

@@ -24,50 +24,54 @@ const GlobalRanking: React.FC = () => {
 
     const filteredVendors = getVendorsByTechnologyOrderedBySpeed(activeTab);
 
-  return (
-      <div className="px-4 py-8 ">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8">
-              Vendors Global Ranking
-          </h1>
-          
-          <TechnologyTabs 
-              activeTab={activeTab} 
-              onTabChange={setActiveTab} 
-          />
-          
-          <div className="overflow-x-auto shadow-lg rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-200">
-                      <tr>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                              Position
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                              Name
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                              Average Speed
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                      {isLoading ? (
-                          <LoaderRow text="Loading vendors..."/>
-                      ) : (
-                          filteredVendors.map((vendor, index) => (
-                              <GlobalRankingRow
-                                  key={vendor.id}
-                                  vendor={vendor}
-                                  position={index + 1}
-                                  speed={getVendorSpeedForTechnology(vendor.id, activeTab)}
-                              />
-                          ))
-                      )}
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  );
+    return (
+        <div className="px-4 py-8 ">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">
+                Vendors Global Ranking
+            </h1>
+
+            <TechnologyTabs
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+            />
+
+            <div className="overflow-x-auto shadow-lg rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-200">
+                        <tr>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
+                                Ranking
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
+                                Name
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide">
+                                Average Speed
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {isLoading ? (
+                            <tr>
+                                <td colSpan={3} className="px-6 py-12 text-center">
+                                    <LoaderRow text="Loading vendors..." />
+                                </td>
+                            </tr>
+                        ) : (
+                            filteredVendors.map((vendor, index) => (
+                                <GlobalRankingRow
+                                    key={vendor.id}
+                                    vendor={vendor}
+                                    position={index + 1}
+                                    speed={getVendorSpeedForTechnology(vendor.id, activeTab)}
+                                />
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 };
 
 export default GlobalRanking;

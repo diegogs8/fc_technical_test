@@ -1,10 +1,34 @@
 import { store } from "../store/store";
 import { Vendor } from "../model/Vendor.model";
-import { TechnologyType } from "../model/Antenna.model";
+import { TechnologyType, Antenna } from "../model/Antenna.model";
 import { selectVendorById, selectVendors, selectVendorsByTechnology, selectVendorsByTechnologyOrderedBySpeed, selectVendorSpeedForTechnology, setVendors } from "../store/Vendor.store";
 import vendorsData from "../../src/assets/vendors_data.json";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+export const extractSpeedValue = (speedMbps: string): number => {
+    const match = speedMbps.match(/(\d+(?:\.\d+)?)/);
+    return match ? parseFloat(match[1]) : 0;
+};
+
+export const calculateGlobalRanking = (antenna: Antenna, allVendors: Vendor[]): number => {
+    const sameTechnologyAntennas = allVendors
+        .flatMap(vendor => vendor.antennas)
+        .filter(a => a.technology === antenna.technology)
+        .map(a => ({
+            antenna: a,
+            speedValue: extractSpeedValue(a.speedMbps)
+        }))
+        .sort((a, b) => b.speedValue - a.speedValue);
+
+    const currentSpeedValue = extractSpeedValue(antenna.speedMbps);
+
+    const ranking = sameTechnologyAntennas.findIndex(
+        item => item.speedValue === currentSpeedValue
+    ) + 1;
+
+    return ranking;
+};
 
 export const useVendorApi = () => {
     const dispatch = useDispatch();
