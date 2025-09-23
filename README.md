@@ -58,6 +58,7 @@ npm run dev
 ```
 - The app will be available (by default) at `http://localhost:5173`.
 - Ensure the API is running on port `8000` (see next section) for data fetching.
+- If you do NOT want to run the Python API: uncomment the mocked data methods in `domain/Vendor.api.ts` (the `fetchVendorsFromApi` function and the alternative `fetchVendors` implementation) to use the local JSON from `src/assets/vendors_data.json`.
 
 ## Installation & Run (API – Python)
 1. Navigate to the `api` directory

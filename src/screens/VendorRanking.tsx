@@ -56,7 +56,6 @@ const VendorRanking: React.FC = () => {
                     <VendorRankingTable
                         antennas={selectedVendor.antennas}
                         allVendors={vendors}
-                        isLoading={false}
                     />
                 </>
             }
