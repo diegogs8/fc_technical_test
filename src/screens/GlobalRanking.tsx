@@ -6,20 +6,11 @@ import TechnologyTabs from "../components/TechnologyTabs";
 import { TechnologyType } from "../../domain/model/Antenna.model";
 
 const GlobalRanking: React.FC = () => {
-    const { vendors, fetchVendors, getVendorsByTechnologyOrderedBySpeed, getVendorSpeedForTechnology } = useVendorApi();
-    const [isLoading, setIsLoading] = useState<boolean>(vendors.length > 0);
+    const { vendors, status, fetchVendors, getVendorsByTechnologyOrderedBySpeed, getVendorSpeedForTechnology } = useVendorApi();
     const [activeTab, setActiveTab] = useState<TechnologyType>(TechnologyType.G2);
 
     useEffect(() => {
-        const fetchVendorsData = async () => {
-            try {
-                await fetchVendors();
-            } finally {
-                setIsLoading(false);
-            }
-        }
-
-        fetchVendorsData();
+        fetchVendors();
     }, []);
 
     const filteredVendors = getVendorsByTechnologyOrderedBySpeed(activeTab);
@@ -51,10 +42,19 @@ const GlobalRanking: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {isLoading ? (
+                        {(status === 'loading' && vendors.length === 0) ? (
                             <tr>
                                 <td colSpan={3} className="px-6 py-12 text-center">
                                     <LoaderRow text="Loading vendors..." />
+                                </td>
+                            </tr>
+                        ) : status === 'failed' ? (
+                            <tr>
+                                <td colSpan={3} className="px-6 py-12 text-center">
+                                    <div className="flex flex-col items-center gap-3">
+                                        <div className="text-red-600">Failed to load vendors.</div>
+                                        <button className="px-4 py-2 bg-blue-600 text-white rounded" onClick={() => fetchVendors(true)}>Retry</button>
+                                    </div>
                                 </td>
                             </tr>
                         ) : (
