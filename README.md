@@ -1,6 +1,6 @@
 ## Future Connections – Technical Test
 
-A React + TypeScript single-page application with a small Python FastAPI backend. The app displays telecom vendors, their antennas and speeds, and provides a global ranking and vendor-focused views. This repository includes both the frontend (Vite) and a simple REST API used locally for data.
+A React + TypeScript application with a small Python FastAPI backend. The app displays telecom vendors, their antennas and speeds, and provides a global ranking and vendor-focused views. This repository includes both the frontend (Vite) and a simple REST API used locally for data.
 
 ## Technologies Used
 - **Frontend**: React 19, TypeScript, Vite 7
@@ -45,8 +45,8 @@ c:\Users\Diego\Projects\fc_technical_test\
 ## Installation & Run (Frontend)
 1. Clone the repository
 ```
-git clone <repo>
-cd <proyecto>
+git clone https://github.com/diegogs8/fc_technical_test.git
+cd fc_technical_test
 ```
 2. Install dependencies
 ```
