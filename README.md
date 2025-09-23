@@ -89,7 +89,7 @@ uvicorn main:app --reload --port 8000
 - **Global Ranking (`/`)**
   - Shows a ranked list of vendors by average speed.
   - Includes technology tabs (G2/G3/G4/G5 via `TechnologyTabs`) to filter the ranking by technology type.
-  - Each row (`GlobalRankingRow`) displays position, vendor name, and average speed for the selected technology.
+  - Each row (`GlobalRankingRow`) displays position, vendor name, and average speed for the selected technology. The vendor name in the row acts as a link to its detail page.
 
 - **Vendor Ranking (`/vendor-ranking`)**
   - Lets you select a vendor (`VendorSelector`) and see their antennas’ speeds in a dedicated table (`VendorRankingTable`).
@@ -100,7 +100,7 @@ uvicorn main:app --reload --port 8000
 
 - **Navigation**
   - The header in `MainLayout` provides links to “Global Ranking” and “Vendor Ranking”.
-  - From the Vendor Ranking screen, clicking the vendor name navigates to its detailed page.
+  - From the Global Raning and Vendor Ranking screens, clicking the vendor name navigates to its detailed page.
 
 ## Technical Decisions
 - **Why Tailwind instead of plain CSS**
